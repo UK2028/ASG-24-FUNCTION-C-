@@ -1,0 +1,366 @@
+NAME-UDIT KHANDELWAL							ASSIGNMENT-24 FUNCTIONS (C++)
+
+
+1. Define a function to check whether a given number is a Prime number or not.
+
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+void prime(int);
+
+int main()
+{
+    int num;
+    cout<<"enter a number:";
+    cin>>num;
+    prime(num);
+    return 0;
+}
+
+void prime(int n)
+{
+    int i;
+    for(i=2;i<=sqrt(n);i++)
+    {
+        if(n%i==0)
+        {
+            cout<<"number is not prime";
+            return;
+        }
+    }
+    cout<<"number is prime";
+    return;
+}
+
+
+2. Define a function to find the highest value digit in a given number.
+
+#include<iostream>
+
+using namespace std;
+
+int highest_digit(int);
+
+int main()
+{
+    int num;
+    cout<<"enter a number:";
+    cin>>num;
+    cout<<"highest digit in "<<num<<" is:"<<highest_digit(num);
+    return 0;
+}
+
+int highest_digit(int n)
+{
+    int arr[10]={0};
+    int dig,i,max_digit;
+    while(n!=0)
+    {
+        dig=n%10;
+        arr[dig]=1;
+        n/=10;
+    }
+    for(i=9;i>=0;i--)
+    {
+        if(arr[i]==1)
+        {
+            max_digit=i;
+            break;
+        }
+    }
+    return max_digit;
+}
+
+
+3. Define a function to calculate x raised to the power y.
+
+#include<iostream>
+
+using namespace std;
+
+int exponent(int,int);
+
+int main()
+{
+    int num1,num2;
+    cout<<"enter base number:";
+    cin>>num1;
+    cout<<"enter power:";
+    cin>>num2;
+    cout<<num1<<" to the power "<<num2<<" is: "<<exponent(num1,num2);
+    return 0;
+}
+
+int exponent(int x,int y)
+{
+    int i,result=1;
+    for(i=1;i<=y;i++)
+    {
+        result*=x;
+    }
+    return result;
+}
+
+
+4. Define a function to print Pascal Triangle up to N lines.
+
+#include<iostream>
+
+using namespace std;
+
+void pascal(int);
+int factorial(int);
+int combination(int,int);
+
+int main()
+{
+    int N;
+    cout<<"enter number of lines of pascal triangle to print:";
+    cin>>N;
+    pascal(N);
+    return 0;
+}
+
+int factorial(int n)
+{
+    int i=1,fact=1;
+    while(i<=n)
+    {
+        fact*=i;
+        i++;
+    }
+    return fact;
+}
+
+int combination(int a,int b)
+{
+    int A=factorial(a);
+    int B=factorial(b);
+    int C=factorial(a-b);
+    int comb=A/(B*C);
+    return comb;
+}
+
+void pascal(int num)
+{
+    int i=1,j=0;
+    cout<<factorial(0)<<endl;
+    while(i<num)
+    {
+        for(j=0;j<=i;j++)
+        {
+            cout<<combination(i,j)<<" ";
+        }
+        i++;
+        cout<<endl;
+    }
+}
+
+
+5. Define a function to check whether a given number is a term in a Fibonacci series or
+not.
+
+#include<iostream>
+
+using namespace std;
+
+void fibonacci(int);
+
+int main()
+{
+    int N;
+    cout<<"enter number:";
+    cin>>N;
+    fibonacci(N);
+    return 0;
+}
+
+void fibonacci(int num)
+{
+    int a=0,b=1,c;
+    while(1)
+    {
+        c=a+b;
+        a=b;
+        b=c;
+        if(c==num)
+        {
+            cout<<"Number "<<num<<" is present in fibonacci series";
+            return;
+        }
+        else if(c>num)
+        {
+            cout<<"Number "<<num<<" is not present in fibonacci series";
+            return;
+        }
+    }
+}
+
+
+6. Define a function to swap data of two int variables using call by reference
+
+#include<iostream>
+
+using namespace std;
+
+void swapping(int &,int &);
+
+int main()
+{
+    int a,b;
+    cout<<"enter first number:";
+    cin>>a;
+    cout<<"enter second number:";
+    cin>>b;
+    swapping(a,b);
+    cout<<"first number is: "<<a<<endl;
+    cout<<"second number is: "<<b;
+    return 0;
+}
+
+void swapping(int &x,int &y)
+{
+    int temp;
+    temp=x;
+    x=y;
+    y=temp;
+}
+
+
+7. Write a function using the default argument that is able to add 2 or 3 numbers.
+
+#include<iostream>
+
+using namespace std;
+
+int add(int,int,int=0);
+
+int main()
+{
+    int a,b,c;
+    cout<<"enter numbers:";
+    cin>>a>>b>>c;
+    cout<<"sum of first two numbers is: "<<add(a,b)<<endl;
+    cout<<"sum of all the numbers is: "<<add(a,b,c);
+    return 0;
+}
+
+int add(int x,int y,int z)
+{
+    return x+y+z;
+}
+
+
+8. Define overloaded functions to calculate area of circle, area of rectangle and area of
+triangle
+
+#include<iostream>
+#include<math.h>
+
+using namespace std;
+
+float area(float);
+float area(float,float);
+float area(float,float,float);
+
+int main()
+{
+    float radius,length,breadth,side1,side2,side3;
+    cout<<"enter radius of circle:";
+    cin>>radius;
+    cout<<"area of circle is: "<<area(radius)<<endl;
+    cout<<"enter length and breadth of rectangle:";
+    cin>>length>>breadth;
+    cout<<"area of rectangle is: "<<area(length,breadth)<<endl;
+    cout<<"enter all sides of triangle: ";
+    cin>>side1>>side2>>side3;
+    cout<<"area of triangle is: "<<area(side1,side2,side3)<<endl;
+    return 0;
+}
+
+float area(float r)
+{
+    return 3.14*r*r;
+}
+
+float area(float l, float b)
+{
+    return l*b;
+}
+
+float area(float a,float b,float c)
+{
+    float s=(a+b+c)/2;
+    float ar=(s*(s-a)*(s-b)*(s-c));
+    return pow(ar,0.5);
+}
+
+9. Write functions using function overloading to find a maximum of two numbers and
+both the numbers can be integer or real.
+
+#include<iostream>
+#include<math.h>
+
+using namespace std;
+
+int maximum(int,int);
+float maximum(float,float);
+
+int main()
+{
+    int num1,num2;
+    cout<<"enter two integer numbers:";
+    cin>>num1>>num2;
+    cout<<"maximum integer numbers is: "<<maximum(num1,num2)<<endl;
+    float NUM1,NUM2;
+    cout<<"enter two float numbers:";
+    cin>>NUM1>>NUM2;
+    cout<<"maximum float numbers is: "<<maximum(NUM1,NUM2)<<endl;
+    return 0;
+}
+
+int maximum(int a,int b)
+{
+    return (a>b)?a:b;
+}
+
+float maximum(float x,float y)
+{
+    return (x>y)?x:y;
+}
+
+
+10. Write functions using function overloading to add two numbers having different data
+types.
+
+#include<iostream>
+#include<math.h>
+
+using namespace std;
+
+int add(int,int);
+float add(float,float);
+
+int main()
+{
+    int num1,num2;
+    cout<<"enter two integer numbers:";
+    cin>>num1>>num2;
+    cout<<"sum of two integer numbers is: "<<add(num1,num2)<<endl;
+    float NUM1,NUM2;
+    cout<<"enter two float numbers:";
+    cin>>NUM1>>NUM2;
+    cout<<"sum of two float numbers is: "<<add(NUM1,NUM2)<<endl;
+    return 0;
+}
+
+int add(int a,int b)
+{
+    return a+b;
+}
+
+float add(float x,float y)
+{
+    return x+y;
+}
