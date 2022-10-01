@@ -144,10 +144,13 @@ int combination(int a,int b)
 
 void pascal(int num)
 {
-    int i=1,j=0;
-    cout<<factorial(0)<<endl;
+    int i=0,j=0,k;
     while(i<num)
     {
+        for(k=0;k<num-i;k++)
+        {
+            cout<<" ";
+        }
         for(j=0;j<=i;j++)
         {
             cout<<combination(i,j)<<" ";
